@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 // mongoDB는 나중에 연결 할 예정
 const cors = require('cors');
 
@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB 연결 (나중에 활성화)
-// mongoose.connect(process.env.MONGODB_URI)
-//   .then(() => console.log('MongoDB connected'))
-//   .catch((err) => console.error('MongoDB connection error:', err));
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB 연결 성공'))
+  .catch((err) => console.error('MongoDB 연결 실패:', err));
 
 // 기본 라우트 
 app.get('/', (req, res) => {
@@ -26,6 +26,6 @@ app.get('/', (req, res) => {
 })
 
 // 서버 시작
-app.listen(PORT, '0,0,0,0', () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 서버가 포트 ${PORT}에서 실행중입니다.`);
 })
