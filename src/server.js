@@ -1,3 +1,5 @@
+const buildingRoutes = require('./routes/buildingRoutes');
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -19,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB 연결 성공'))
   .catch((err) => console.error('MongoDB 연결 실패:', err));
+
+// 라우터 연결
+app.use('/api/buildings', buildingRoutes);
 
 // 기본 라우트 
 app.get('/', (req, res) => {
