@@ -6,7 +6,7 @@
 
 const express = require('express');
 const router = express.Router();
-const buindingController = require('../controllers/buildingController');
+const buildingController = require("../controllers/buildingController");
 
 // GET /api/buildings - 전체 건물 목록 조회
 router.get('/', buildingController.getAllBuildings);
