@@ -8,7 +8,8 @@ const building = require("../models/Building");
 // 전체 건물 목록 조회
 exports.getAllBuildings = async (req, res) => {
   try {
-    const buildings = await building.find();
+    const buildings = await Building.find();
+    console.log('건물 목록 조회 성공', buildings.Length, '개');
     res.json({
       success: true,
       data: buildings,
@@ -25,7 +26,7 @@ exports.getAllBuildings = async (req, res) => {
 // 특정 건물 조회
 exports.getBuildingById = async(req, res) => {
   try {
-    const building = await building.findById(req.params.id);
+    const foundBuilding = await Building.findById(req.params.id);
 
     if(!building) {
       return res.status(404).json({
@@ -33,9 +34,10 @@ exports.getBuildingById = async(req, res) => {
         message: "건물을 찾을 수 없습니다."
       });
     }
+    console.log("건물 조회 성공", foundBuilding);
     res.json({
       success: true,
-      data: building
+      data: foundBuilding,
     });
   } catch(err) {
     res.status(500).json({
