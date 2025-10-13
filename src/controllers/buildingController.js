@@ -3,7 +3,7 @@
 * 실제 일을 처리하는 곳으로 DB에서 데이터 가져오고 응답 만들어서 보냄
 */
 
-const building = require("../models/Building");
+const Building = require("../models/Building");
 
 // 전체 건물 목록 조회
 exports.getAllBuildings = async (req, res) => {
